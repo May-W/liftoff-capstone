@@ -5,11 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
+public class UserController {
 
-    @RequestMapping(value = "")
-    @ResponseBody
+    @RequestMapping(value = "login")
     public String index() {
-        return "Hello World";
+        return "etc/login";
     }
+    @RequestMapping(value = "signup")
+    public String signup() {
+        return "etc/signup";
+    }
+
+
 }
+
