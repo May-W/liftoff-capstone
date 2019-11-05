@@ -14,6 +14,13 @@ public class UserController {
     public String index() {
         return "etc/login";
     }
+
+    //@TODO - need to make logout functional after database login works
+    @RequestMapping(value = "logout")
+    public String index() {
+        return "etc/login";
+    }
+
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String signup() {
         return "etc/signup";
@@ -26,6 +33,10 @@ public class UserController {
         if (user.getPassword().equals(verify_password)) {
             return "etc/index";
         }
+
+        //@TODO - need to connect this to database
+        //@TODO - need to do validation on email
+        //@TODO - need to add session/cookie here for active login
 
         model.addAttribute("error_message", "I'm sorry, but password doesn't match verify password. Please try again.");
         return "etc/signup";
