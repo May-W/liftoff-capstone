@@ -17,7 +17,7 @@ public class UserController {
 
     //@TODO - need to make logout functional after database login works
     @RequestMapping(value = "logout")
-    public String index() {
+    public String logout() {
         return "etc/login";
     }
 
