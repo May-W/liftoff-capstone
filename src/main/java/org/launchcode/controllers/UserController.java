@@ -32,7 +32,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value="signup", method = RequestMethod.GET)
+    @RequestMapping(value="/signup", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
@@ -41,7 +41,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
