@@ -31,6 +31,13 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+    public ModelAndView loggedin(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("consoles/add");
+        return modelAndView;
+    }
+
 
     @RequestMapping(value="/signup", method = RequestMethod.GET)
     public ModelAndView registration(){
