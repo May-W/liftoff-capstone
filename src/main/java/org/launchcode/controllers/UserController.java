@@ -41,7 +41,8 @@ public class UserController {
         if (databaseUser != null && databaseUser.getPassword().equals(user.getPassword())) {
             return "consoles/add";
         }
-        return "etc/login";
+
+        return "redirect:/login?error";
 
     }
 
