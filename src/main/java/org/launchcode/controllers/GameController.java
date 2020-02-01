@@ -35,7 +35,7 @@ public class GameController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddCheeseForm(Model model) {
+    public String displayAddGameForm(Model model) {
         model.addAttribute("title", "Add Game");
         model.addAttribute(new Game());
         model.addAttribute("categories", gameDao.findAll());
@@ -43,32 +43,32 @@ public class GameController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
+    public String processAddGameForm(@ModelAttribute  @Valid Game newGame,
                                        Errors errors, @RequestParam int categoryId, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
-            model.addAttribute("categories", categoryDao.findAll());
+            model.addAttribute("categories", consoleDao.findAll());
             return "cheese/add";
         }
-        Category cat = categoryDao.findOne(categoryId);
-        newCheese.setCategory(cat);
-        cheeseDao.save(newCheese);
+        Game game = gameDao.findOne(gameId);
+        newGame.setID(game);
+        gameDao.save(newGame);
         return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveCheeseForm(Model model) {
-        model.addAttribute("cheeses", cheeseDao.findAll());
-        model.addAttribute("title", "Remove Cheese");
+    public String displayRemoveGameForm(Model model) {
+        model.addAttribute("game", gameDao.findAll());
+        model.addAttribute("title", "Remove Game");
         return "cheese/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
+    public String processRemoveGameForm(@RequestParam int[] gameIds) {
 
-        for (int cheeseId : cheeseIds) {
-            cheeseDao.delete(cheeseId);
+        for (int gameId : gameIds) {
+            gameDao.delete(gameId);
         }
 
         return "redirect:";
