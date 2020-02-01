@@ -7,29 +7,29 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
-@Entity
-@Table(name = "user")
-public class User {
+        @Data
+        @Entity
+        @Table(name = "user")
+        public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private int id;
+            @Id
+            @GeneratedValue(strategy = GenerationType.AUTO)
+            @Column(name = "user_id")
+            private int id;
 
-    @Column(name = "email")
-    @Email(message = "Please provide a valid Email")
-    @NotNull(message = "Please provide a valid Email")
-    private String email;
+            @Column(name = "email")
+            @Email(message = "Please provide a valid Email")
+            @NotNull(message = "Please provide a valid Email")
+            private String email;
 
-    @Column(name = "password")
-    @NotNull(message = "Please enter a password. Password must not be blank.")
-    @Size(min = 1, message = "Please enter a password. Password must not be blank.")
-    private String password;
+            @Column(name = "password")
+            @NotNull(message = "Please enter a password. Password must not be blank.")
+            @Size(min = 1, message = "Please enter a password. Password must not be blank.")
+            private String password;
 
-    public int getId() {
-        return id;
-    }
+            public int getId() {
+                return id;
+            }
 
     public void setId(int id) {
         this.id = id;
