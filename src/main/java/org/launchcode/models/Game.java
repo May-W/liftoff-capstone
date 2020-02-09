@@ -1,9 +1,6 @@
 package org.launchcode.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -21,14 +18,14 @@ public class Game {
 
     private String imageURL;
 
-    @ManyToMany(mappedBy = "games")
-    private List<Console> consoles;
+    @OneToOne(mappedBy = "games")
+    private Console console;
 
-    public Game(String name, String synopsis, String imageURL, List<Console> consoles) {
+    public Game(String name, String synopsis, String imageURL, Console consoles) {
         this.name = name;
         this.synopsis = synopsis;
         this.imageURL = imageURL;
-        this.consoles = consoles;
+        this.console = console;
     }
 
     public Game() {
@@ -60,6 +57,14 @@ public class Game {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public Console getConsoles() {
+        return console;
+    }
+
+    public void setConsole(Console consoles) {
+        this.console = consoles;
     }
 
 

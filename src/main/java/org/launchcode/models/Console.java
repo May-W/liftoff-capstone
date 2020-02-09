@@ -1,9 +1,6 @@
 package org.launchcode.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class Console {
     @NotNull
     private String name;
 
-    @ManyToMany
+    @OneToMany
     private List<Game> games;
 
     @NotNull

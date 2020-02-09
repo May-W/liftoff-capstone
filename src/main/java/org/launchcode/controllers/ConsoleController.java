@@ -26,7 +26,7 @@ public class ConsoleController {
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("title", "Consoles");
-        model.addAttribute("consoles", ConsoleDao.findAll());
+        model.addAttribute("consoles", consoleDao.findAll());
         return "consoles/consoles";
     }
 
@@ -61,7 +61,7 @@ public class ConsoleController {
 
     @RequestMapping(value = "/view/{consoleId}", method = RequestMethod.GET)
     public String viewConsole(Model model, @PathVariable int consoleId) {
-        Console console = ConsoleDao.findOne(consoleId);
+        Console console = consoleDao.findById(consoleId).get();
         model.addAttribute("brand", console.getBrand());
         model.addAttribute("title", console.getName());
         model.addAttribute("games", console.getGames());

@@ -44,15 +44,15 @@ public class GameController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddGameForm(@ModelAttribute  @Valid Game newGame,
-                                       Errors errors, @RequestParam int categoryId, Model model) {
+                                       Errors errors, @RequestParam int consoleId, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
             model.addAttribute("categories", consoleDao.findAll());
-            return "cheese/add";
+            return "game/add";
         }
-        Game game = gameDao.findOne(gameId);
-        newGame.setID(game);
+        Console console = consoleDao.findById(consoleId).get();
+        newGame.setConsole(console);
         gameDao.save(newGame);
         return "redirect:";
     }
@@ -68,7 +68,7 @@ public class GameController {
     public String processRemoveGameForm(@RequestParam int[] gameIds) {
 
         for (int gameId : gameIds) {
-            gameDao.delete(gameId);
+            gameDao.deleteById(gameId);
         }
 
         return "redirect:";
