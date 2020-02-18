@@ -2,6 +2,7 @@ package org.launchcode.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,7 +16,7 @@ public class Console {
     private String name;
 
     @OneToMany
-    private List<Game> games;
+    private List<Game> games = new ArrayList<>();
 
     @NotNull
     private String brand;
