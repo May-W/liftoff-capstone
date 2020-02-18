@@ -22,17 +22,18 @@ public class ConsoleController {
     GameDao gameDao;
 
     //TODO i need a homepage which is a list of all consoles and i can select one... and an add consoles form. These need to be seperate.
+    //I think let's use consoles/index as our list of all consoles. consoles/add is our add form
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "consoles", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("title", "Consoles");
         model.addAttribute("consoles", consoleDao.findAll());
-        return "consoles/consoles";
+        return "consoles";
     }
 
     @RequestMapping(value = "home")
     public String index() {
-        return "etc/index";
+        return "consoles/consoles";
     }
 
     @RequestMapping(value = "addconsole")
@@ -44,14 +45,14 @@ public class ConsoleController {
     public String add(Model model) {
         model.addAttribute("title", "Add Console");
         model.addAttribute(new Console());
-        return "add";
+        return "consoles/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute @Valid Console console, Errors errors) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Menu");
+            model.addAttribute("title", "Add Console");
             return "add";
         }
         consoleDao.save(console);

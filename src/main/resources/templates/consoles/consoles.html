@@ -2,12 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="${title}">My Games</h1>
+<h1 th:text="${title}">My Consoles</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 <hr>
 
-In the future, there will be a list of consoles here
+<h1> My Consoles</h1>
+
+<ul>
+    <li th:each="console : ${Consoles}" th:text="${console.name}"></li>
+</ul>
+
 <a href="addconsole">Add a console</a>
 
 </body>

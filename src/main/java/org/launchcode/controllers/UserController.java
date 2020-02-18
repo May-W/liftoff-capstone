@@ -33,7 +33,7 @@ public class UserController {
         User databaseUser = userService.findUserByEmail(user.getEmail());
 
         if (databaseUser != null && databaseUser.getPassword().equals(user.getPassword())) {
-            return "consoles/add";
+            return "etc/index";
         }
         return "redirect:/login?error";
 

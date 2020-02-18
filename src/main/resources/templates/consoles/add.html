@@ -8,7 +8,18 @@
 <hr>
 <h1>Add a console to your collection!</h1>
 
-
+<form method="post" style="max-width:600px;" th:object="${console}">
+    <div class="form-group">
+        <label th:for="brand">Brand</label>
+        <input th:field="*{brand}" />
+    </div>
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <input type="submit" value="Add Console" />
+</form>
 
 </body>
 </html>

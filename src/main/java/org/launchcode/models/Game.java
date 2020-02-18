@@ -18,7 +18,8 @@ public class Game {
 
     private String imageURL;
 
-    @OneToOne(mappedBy = "games")
+    @OneToOne
+            //(mappedBy = "games")
     private Console console;
 
     public Game(String name, String synopsis, String imageURL, Console consoles) {
