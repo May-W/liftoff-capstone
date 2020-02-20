@@ -29,10 +29,12 @@ public class GameController {
     public String index(Model model) {
 
         model.addAttribute("games", gameDao.findAll());
-        model.addAttribute("title", "My Games");
+        model.addAttribute("title", "Games");
 
         return "games/index";
     }
+
+    //TODO - index should be a listing for all games FOR A GIVEN CONSOLE - linked from the consoles.html homepage. EVERYTHING ON GAMES IS PER CONSOLE
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddGameForm(Model model) {
