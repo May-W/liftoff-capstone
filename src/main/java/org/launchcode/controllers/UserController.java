@@ -19,7 +19,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
+    @RequestMapping(value={"/"})
+    public String loadIndex() { return "/etc/index"; }
+
+    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("etc/login");
@@ -33,7 +36,7 @@ public class UserController {
         User databaseUser = userService.findUserByEmail(user.getEmail());
 
         if (databaseUser != null && databaseUser.getPassword().equals(user.getPassword())) {
-            return "etc/index";
+            return "consoles/consoles";
         }
         return "redirect:/login?error";
 

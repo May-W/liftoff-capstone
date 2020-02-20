@@ -21,29 +21,18 @@ public class ConsoleController {
     @Autowired
     GameDao gameDao;
 
-    //TODO i need a homepage which is a list of all consoles and i can select one... and an add consoles form. These need to be seperate.
-    //I think let's use consoles/index as our list of all consoles. consoles/add is our add form
-
-    @RequestMapping(value = "consoles", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("title", "Consoles");
+        model.addAttribute("title", "My Consoles");
         model.addAttribute("consoles", consoleDao.findAll());
-        return "consoles";
-    }
-
-    @RequestMapping(value = "home")
-    public String index() {
         return "consoles/consoles";
     }
 
-    @RequestMapping(value = "addconsole")
-    public String addconsole() {
-        return "consoles/add";
-    }
+    //TODO - need to fix the consoles page so that each table row (or at least the name) is a link
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
-        model.addAttribute("title", "Add Console");
+        model.addAttribute("title", "Add a console to your collection!");
         model.addAttribute(new Console());
         return "consoles/add";
     }
@@ -52,12 +41,12 @@ public class ConsoleController {
     public String add(Model model, @ModelAttribute @Valid Console console, Errors errors) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Console");
+            model.addAttribute("title", "Add a console to your collection!");
             return "add";
         }
         consoleDao.save(console);
 
-        return "redirect:consoles/" + console.getId();
+        return "redirect:/consoles/" + console.getId();
     }
 
     @RequestMapping(value = "/view/{consoleId}", method = RequestMethod.GET)

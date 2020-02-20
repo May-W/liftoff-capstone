@@ -6,14 +6,16 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 <hr>
+<p th:unless="${consoles} and ${consoles.size()}">No Consoles Yet</p>
 
-<h1> My Consoles</h1>
 
 <ul>
-    <li th:each="console : ${Consoles}" th:text="${console.name}"></li>
+    <li th:each="console : ${consoles}" th:text="|${console.brand} ${console.name}|"></li>
 </ul>
 
-<a href="addconsole">Add a console</a>
+<hr>
+
+<a href="consoles/add">Add a console</a>
 
 </body>
 </html>
