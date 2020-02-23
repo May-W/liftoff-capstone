@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<h1 th:text="${title}">My Games</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+<hr>
+
+<p th:unless="${games} and ${games.size()}">No Games Yet</p>
+
+
+<ul>
+    <li th:each="game : ${games}"><a th:href="|/games/view/${game.id}|" th:text="${game.name}"></a></li>
+</ul>
+
+<hr>
+
+<a href="/game/add">Add a Game</a>
+
+
 
 </body>
 </html>

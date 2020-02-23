@@ -16,7 +16,9 @@ public class Console {
     private String name;
 
     @OneToMany
-    private List<Game> games = new ArrayList<>();
+    @JoinColumn(name = "id")
+    private List<Game> games;
+            //= new ArrayList<>();
 
     @NotNull
     private String brand;

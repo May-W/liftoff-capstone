@@ -19,7 +19,7 @@ public class Game {
     private String imageURL;
 
     @OneToOne
-            //(mappedBy = "games")
+    @JoinColumn(name = "id")
     private Console console;
 
     public Game(String name, String synopsis, String imageURL, Console consoles) {

@@ -10,12 +10,12 @@
 
 
 <ul>
-    <li th:each="console : ${consoles}" th:text="|${console.brand} ${console.name}|"></li>
+    <li th:each="console : ${consoles}"><a th:href="|/consoles/view/${console.id}|" th:text="|${console.brand} ${console.name}|"></a></li>
 </ul>
 
 <hr>
 
-<a href="consoles/add">Add a console</a>
+<a href="add">Add a console</a>
 
 </body>
 </html>

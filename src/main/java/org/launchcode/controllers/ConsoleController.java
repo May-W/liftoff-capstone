@@ -58,7 +58,7 @@ public class ConsoleController {
         model.addAttribute("games", console.getGames());
         model.addAttribute("consoleId", console.getId());
 
-        return "consoles/consoles";
+        return "games/index";
     }
 
 
