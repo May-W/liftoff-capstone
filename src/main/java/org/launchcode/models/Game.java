@@ -18,11 +18,11 @@ public class Game {
 
     private String imageURL;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "console_id")
     private Console console;
 
-    public Game(String name, String synopsis, String imageURL, Console consoles) {
+    public Game(String name, String synopsis, String imageURL, Console console) {
         this.name = name;
         this.synopsis = synopsis;
         this.imageURL = imageURL;

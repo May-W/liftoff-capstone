@@ -55,14 +55,17 @@ public class GameController {
     }
 //TODO - the above redirects to home temporarily. I need this to redirect to "add/{consoleId}" but i need to research the correct syntax
 
-    @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveGameForm(Model model) {
-        model.addAttribute("game", gameDao.findAll());
+    @RequestMapping(value = "remove/{consoleId}", method = RequestMethod.GET)
+    public String displayRemoveGameForm(@PathVariable int consoleId, Model model) {
+        Console console = consoleDao.findById(consoleId).get();
+        model.addAttribute("games", console.getGames());
         model.addAttribute("title", "Remove Game");
-        return "cheese/remove";
+        return "fix_pls";
     }
 
-    @RequestMapping(value = "remove", method = RequestMethod.POST)
+//TODO - the above doesn't return anything. I need this to redirect to "add/{consoleId}" but i need to research the correct syntax
+
+    @RequestMapping(value = "remove/{consoleId}", method = RequestMethod.POST)
     public String processRemoveGameForm(@RequestParam int[] gameIds) {
 
         for (int gameId : gameIds) {
@@ -71,12 +74,14 @@ public class GameController {
 
         return "redirect:";
     }
-//    @RequestMapping(value = "/view/{consoleId}", method = RequestMethod.GET)
-//   public String viewConsole(Model model, @PathVariable int consoleId) {
-//        Game game = gameDao.findById(consoleId).get();
-//        model.addAttribute("title", game.getName());
-//        return "games/view";
-//    }
+    @RequestMapping(value = "/view/{gameId}", method = RequestMethod.GET)
+    public String viewConsole(Model model, @PathVariable int gameId) {
+        Game game = gameDao.findById(gameId).get();
+        model.addAttribute("title", game.getName());
+        model.addAttribute("Synopsis", game.getSynopsis());
+        model.addAttribute("image", game.getImageURL());
 
+        return "games/view";
+    }
 
 }

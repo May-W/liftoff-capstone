@@ -2,8 +2,7 @@ package org.launchcode.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -15,10 +14,11 @@ public class Console {
     @NotNull
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<Game> games;
+    @OneToMany(mappedBy="console")
+    private Set<Game> games;
             //= new ArrayList<>();
+
+    //TODO - according to research this might need to be a Set and not a List?
 
     @NotNull
     private String brand;
@@ -43,7 +43,7 @@ public class Console {
         this.name = name;
     }
 
-    public List<Game> getGames() {
+    public Set<Game> getGames() {
         return games;
     }
 
