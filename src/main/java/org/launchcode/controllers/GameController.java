@@ -45,7 +45,7 @@ public class GameController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddGameForm(@ModelAttribute  @Valid Game newGame,
                                        Errors errors, @RequestParam int consoleId, Model model) {
-
+        
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add game");
             return "game/add";
@@ -72,12 +72,12 @@ public class GameController {
 
         return "redirect:";
     }
-    @RequestMapping(value = "/view/{gameId}", method = RequestMethod.GET)
-    public String viewConsole(Model model, @PathVariable int gameId) {
-        Game game = gameDao.findById(gameId).get();
-        model.addAttribute("title", game.getName());
-        return "games/view";
-    }
+//    @RequestMapping(value = "/view/{consoleId}", method = RequestMethod.GET)
+//   public String viewConsole(Model model, @PathVariable int consoleId) {
+//        Game game = gameDao.findById(consoleId).get();
+//        model.addAttribute("title", game.getName());
+//        return "games/view";
+//    }
 
 
 }

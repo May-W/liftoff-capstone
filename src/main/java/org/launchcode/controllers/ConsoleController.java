@@ -28,8 +28,6 @@ public class ConsoleController {
         return "consoles/consoles";
     }
 
-    //TODO - need to fix the consoles page so that each table row (or at least the name) is a link
-
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute("title", "Add a console to your collection!");
