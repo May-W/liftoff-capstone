@@ -45,7 +45,6 @@ public class ConsoleController {
         consoleDao.save(console);
 
         return "redirect:/consoles/";
-        // + console.getId()
     }
 
     @RequestMapping(value = "/view/{consoleId}", method = RequestMethod.GET)

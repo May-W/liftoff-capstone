@@ -32,9 +32,7 @@ public class GameController {
         return "games/index";
     }
 
-    //TODO - index should be a listing for all games FOR A GIVEN CONSOLE - linked from the consoles.html homepage. EVERYTHING ON GAMES IS PER CONSOLE
-
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add/{consoleId}", method = RequestMethod.GET)
     public String displayAddGameForm(Model model) {
         model.addAttribute("title", "Add Game");
         model.addAttribute(new Game());
@@ -42,10 +40,10 @@ public class GameController {
         return "games/add";
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @RequestMapping(value = "add/{consoleId}", method = RequestMethod.POST)
     public String processAddGameForm(@ModelAttribute  @Valid Game newGame,
-                                       Errors errors, @RequestParam int consoleId, Model model) {
-        
+                                       Errors errors, @PathVariable int consoleId, Model model) {
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add game");
             return "game/add";
@@ -53,8 +51,9 @@ public class GameController {
         Console console = consoleDao.findById(consoleId).get();
         newGame.setConsole(console);
         gameDao.save(newGame);
-        return "redirect:";
+        return "redirect:/consoles/";
     }
+//TODO - the above redirects to home temporarily. I need this to redirect to "add/{consoleId}" but i need to research the correct syntax
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveGameForm(Model model) {
