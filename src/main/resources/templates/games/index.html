@@ -11,7 +11,7 @@
 
 
 <ul>
-    <li th:each="game : ${games}"><a th:href="|/games/view/${game.id}|" th:text="${game.name}"></a></li>
+    <li th:each="game : ${games}"><a th:href="|/game/view/${game.id}|" th:text="${game.name}"></a></li>
 </ul>
 
 <hr>

@@ -75,11 +75,14 @@ public class GameController {
         return "redirect:";
     }
     @RequestMapping(value = "/view/{gameId}", method = RequestMethod.GET)
-    public String viewConsole(Model model, @PathVariable int gameId) {
+    public String viewGame(Model model, @PathVariable int gameId) {
         Game game = gameDao.findById(gameId).get();
+        Console console = game.getConsoles();
         model.addAttribute("title", game.getName());
-        model.addAttribute("Synopsis", game.getSynopsis());
+        model.addAttribute("synopsis", game.getSynopsis());
         model.addAttribute("image", game.getImageURL());
+        model.addAttribute("brand", console.getBrand());
+        model.addAttribute("consolename",console.getName());
 
         return "games/view";
     }
